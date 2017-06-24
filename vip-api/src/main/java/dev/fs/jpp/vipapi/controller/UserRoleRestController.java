@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.fs.jpp.vipapi.model.EventModel;
-import dev.fs.jpp.vipapi.service.EventService;
+import dev.fs.jpp.vipapi.model.UserRoleModel;
+import dev.fs.jpp.vipapi.service.UserRoleService;
 
 @RestController
-@RequestMapping("/events")
-public class EventRestController {
+@RequestMapping("/userroles")
+public class UserRoleRestController {
 	@Autowired
-	@Qualifier("eventServiceJpaImpl")
-	private EventService service;
+	@Qualifier("userRoleServiceJpaImpl")
+	private UserRoleService service;
 	
 	@GetMapping("/ping")
 	public ResponseEntity<String> ping() {
@@ -31,22 +31,22 @@ public class EventRestController {
 	}
 	
 	@GetMapping("/")
-	public ResponseEntity<List<EventModel>> listEvents() {
-		List<EventModel> result = service.findAll();
-		return new ResponseEntity<List<EventModel>>(result, HttpStatus.OK);
+	public ResponseEntity<List<UserRoleModel>> listUserRoles() {
+		List<UserRoleModel> result = service.findAll();
+		return new ResponseEntity<List<UserRoleModel>>(result, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<EventModel> getEvent(@PathVariable("id") int id) {
-		EventModel event = service.findById(id);
-		return new ResponseEntity<EventModel>(event, HttpStatus.OK);
+	public ResponseEntity<UserRoleModel> getUserRole(@PathVariable("id") int id) {
+		UserRoleModel userRole = service.findById(id);
+		return new ResponseEntity<UserRoleModel>(userRole, HttpStatus.OK);
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Void> createEvent(@RequestBody EventModel event) {
-		event = service.add(event);
+	public ResponseEntity<Void> createUserRole(@RequestBody UserRoleModel userRole) {
+		userRole = service.add(userRole);
 		
-		if (event != null) {
+		if (userRole != null) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,13 +54,13 @@ public class EventRestController {
 	}
 	
 	@PutMapping("/")
-	public ResponseEntity<Void> updateEvent(@RequestBody EventModel event) {
-		service.update(event);
+	public ResponseEntity<Void> updateUserRole(@RequestBody UserRoleModel userRole) {
+		service.update(userRole);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteEvent(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteUserRole(@PathVariable("id") int id) {
 		service.remove(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
