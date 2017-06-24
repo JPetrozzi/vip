@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user_role")
+@Table(name="vip_user_role")
 public class UserRole {
 	@Id
 	@GeneratedValue
@@ -18,7 +18,7 @@ public class UserRole {
 	private int id;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="iduser", referencedColumnName="id", nullable=false)
+	@JoinColumn(name="user_id", nullable=false)
 	private User user;
 	
 	@Column(name="role", nullable=false)

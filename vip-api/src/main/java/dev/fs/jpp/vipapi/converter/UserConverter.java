@@ -1,5 +1,6 @@
 package dev.fs.jpp.vipapi.converter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -12,26 +13,34 @@ public class UserConverter implements IConverter<User, UserModel> {
 
 	@Override
 	public User modelToEntity(UserModel model) {
-		// TODO Auto-generated method stub
-		return null;
+		return new User(model.getId(), model.getName(), model.getPhone(), model.getEmail(), model.getPassword(), model.getRoles());
 	}
 
 	@Override
 	public List<User> listModelToListEntity(List<UserModel> models) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> entities = new ArrayList<>();
+		
+		for (UserModel model : models) {
+			entities.add(this.modelToEntity(model));
+		}
+		
+		return entities;
 	}
 
 	@Override
 	public UserModel entityToModel(User entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return new UserModel(entity.getId(), entity.getName(), entity.getPhone(), entity.getEmail(), entity.getPassword(), entity.getRoles());
 	}
 
 	@Override
 	public List<UserModel> listEntityToListModel(List<User> entities) {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserModel> models = new ArrayList<>();
+		
+		for (User entity : entities) {
+			models.add(this.entityToModel(entity));
+		}
+		
+		return models;
 	}
 
 }

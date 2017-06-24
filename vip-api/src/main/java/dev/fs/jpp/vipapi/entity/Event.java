@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="event")
+@Table(name="vip_event")
 public class Event {
 	@Id
 	@GeneratedValue
@@ -28,7 +28,7 @@ public class Event {
 	@Column(name="date", nullable=false)
 	private Date date;
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="event", targetEntity=GuestList.class)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="event")
 	private List<GuestList> lists;
 	
 	public Event() {

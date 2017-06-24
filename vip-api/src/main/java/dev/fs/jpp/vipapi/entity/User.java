@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name="vip_user")
 public class User {
 	@Id
 	@GeneratedValue
@@ -30,19 +30,20 @@ public class User {
 	@Column(name="password", nullable=false, length=60)
 	private String password;
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="user", targetEntity=UserRole.class)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="user")
 	private List<UserRole> roles;
 	
 	public User() {
 		super();
 	}
 	
-	public User(int id, String name, String phone, String email, List<UserRole> roles) {
+	public User(int id, String name, String phone, String email, String password, List<UserRole> roles) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
+		this.password = password;
 		this.roles = roles;
 	}
 
@@ -76,6 +77,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<UserRole> getRoles() {

@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="guestList")
+@Table(name="vip_guestList")
 public class GuestList {
 	@Id
 	@GeneratedValue
@@ -21,11 +21,11 @@ public class GuestList {
 	private String represent;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="iduser", referencedColumnName="id", nullable=false)
+	@JoinColumn(name="user_id", nullable=false)
 	private User creator;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="idevent", referencedColumnName="id", nullable=false)
+	@JoinColumn(name="event_id", nullable=false)
 	private Event event;
 	
 	@Column(name="numberOfGuests")
